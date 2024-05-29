@@ -58,7 +58,7 @@ int registro() //função responsável por cadastrar os usuários do sistema
 }
 
 int consulta()  {
-	setlocale(LC_ALL, "Portuguese"); // Definindo a Linguagem
+	setlocale(LC_ALL, "Portuguese_Brasil.1252"); // Definindo a Linguagem
 	
 	char cpf[40];
 	char conteudo[200];
@@ -84,7 +84,7 @@ int consulta()  {
 }
 
 int deletar()  {
-	setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
+	setlocale(LC_ALL, "Portuguese_Brasil.1252"); //Definindo a linguagem
 	
 	char cpf[40]; //Declarando uma string para armazenar o CPF do usuário a ser deletado
 
@@ -101,47 +101,60 @@ int deletar()  {
 	
 	system("pause");
 }
- 
-int main()  {
-    int opcao = 0; // definindo as variáveis
+
+int main() {
+    int opcao = 0; // Definindo as variáveis
     int laco = 1;
-
-    for (laco = 1; laco = 1;)  {
+    char sendig[100]; // Tamanho ajustado para evitar buffer overflow
+    int comp;
+    
+    printf("### Cartório da EBAC ###\n\n"); // Início do menu
+    printf("Login de administrador! \nDigite a sua senha: ");
+    scanf("%s", sendig);
+    
+    comp = strcmp(sendig, "admin");
+    
+    if (comp == 0) {
         system("cls");
+        while (laco == 1) {  // Corrigido o loop para não ser infinito
 
-        setlocale(LC_ALL, "Portuguese"); // Definindo a Linguagem
+            setlocale(LC_ALL, "Portuguese_Brasil.1252"); // Definindo a Linguagem
 
-        printf("### Cartório da EBAC ###\n\n"); // Início do menu
-        printf("Escolha a opcão desejada do menu:\n\n");
-        printf("\t1 - Registrar nomes\n");
-        printf("\t2 - Consultar nomes\n");
-        printf("\t3 - Deletar nomes\n\n");
-        printf("\t4 - Sair\n\n");
-        printf("Opcao: "); // Fim do menu
+            printf("### Cartório da EBAC ###\n\n"); // Início do menu
+            printf("Escolha a opcão desejada do menu:\n\n");
+            printf("\t1 - Registrar nomes\n");
+            printf("\t2 - Consultar nomes\n");
+            printf("\t3 - Deletar nomes\n\n");
+            printf("\t4 - Sair\n\n");
+            printf("Opcao: "); // Fim do menu
 
-        scanf("%d", &opcao); // Armazenando a escolha do usuário
+            scanf("%d", &opcao); // Armazenando a escolha do usuário
 
-        system("cls");
+            system("cls");
 
-        switch (opcao)  {
-            case 1:
-                registro();
-                break;
-            case 2:
-                consulta();
-                break;
-            case 3:
-                deletar();
-                break;
-            case 4:
-            	printf("Sistema encerrado com sucesso!\n");
-            	return 0;
-            	break;
-            	
-            default:
-                printf("Opcao invalida!\n");
-                system("pause");
-                break;
-        }
+            switch (opcao) {
+                case 1:
+                    registro();
+                    break;
+                case 2:
+                    consulta();
+                    break;
+                case 3:
+                    deletar();
+                    break;
+                case 4:
+                    printf("Sistema encerrado com sucesso!\n");
+                    return 0;
+                    break;
+                default:
+                    printf("Opcao invalida!\n");
+                    system("pause");
+                    break; 
+            				}
+        				}
+    				} else {
+        			printf("\n\nSenha incorreta\n");
     }
+    
 }
+
